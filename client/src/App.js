@@ -6,14 +6,12 @@ import Home from './components/Home'
 const App = () => {
     return (
         <>
-            <div className="App">App compoente</div>
             <Routes>
-                
                 <Route path='/login' element={<Login />}>Login</Route>
                 <Route path='/' element={<Home/>}>Home</Route>
             </Routes>
         </>
         )
     }
-    
+
 export default App
