@@ -8,6 +8,9 @@ manage this project `sainty manage`
 
 dataset created by default is `production`.
 
+## result after npm run build
+https://sharemesuhailpm.sanity.studio/desk
+
 # Sanity Clean Content Studio
 
 Congratulations, you have now installed the Sanity Content Studio, an open source real-time content editing environment connected to the Sanity backend.
