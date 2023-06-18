@@ -26,7 +26,7 @@ const Login = () => {
       }
 
       client.createIfNotExists(doc)
-        .then((res)=>{console.log(res);navigate('/')})
+        .then((res)=>navigate('/'))
         .catch((e)=>console.log(e))
 
     }
