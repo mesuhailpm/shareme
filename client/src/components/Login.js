@@ -7,7 +7,6 @@ import { client } from '../client'
 import { useNavigate } from 'react-router-dom'
 
 
-
 const Login = () => {
   const navigate = useNavigate()
 

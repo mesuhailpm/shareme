@@ -1,7 +1,8 @@
 import React from 'react'
 import { Route, Routes, useNavigate} from 'react-router-dom'
-import Login from './components/Login'
-import Home from './containers/Home'
+// import Login from './components/Login'
+import  {Home} from './containers'
+import  {Login} from './components'
 
 const App = () => {
     return (
@@ -9,7 +10,7 @@ const App = () => {
             <Routes>
 
                 <Route path='/login' element={<Login />}>Login</Route>
-                <Route path='/' element={<Home/>}>Home</Route> {/* arterisk* will be right*/}
+                <Route path='/*' element={<Home />}>Home</Route>
             </Routes>
         </>
         )
