@@ -6,7 +6,6 @@ import Home from './containers/Home'
 const App = () => {
     return (
         <>
-            <div className="App">App component</div>
             <Routes>
 
                 <Route path='/login' element={<Login />}>Login</Route>
