@@ -9,7 +9,7 @@ const App = () => {
             <Routes>
 
                 <Route path='/login' element={<Login />}>Login</Route>
-                <Route path='/' element={<Home/>}>Home</Route>
+                <Route path='/' element={<Home/>}>Home</Route> {/* arterisk* will be right*/}
             </Routes>
         </>
         )
