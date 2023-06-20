@@ -7,6 +7,7 @@ import logo from '../assests/logo.png'
 import { Link,Route,Routes } from 'react-router-dom'
 import Pins from '../containers/Pins'
 import UserProfile from '../components/UserProfile'
+import {userQuery} from '../utils/generateQuery'
 
 const Home = () => {
   const [showSideBar, setShowSideBar] = useState (false)
@@ -16,13 +17,10 @@ const Home = () => {
 
   const userInfo = localStorage.getItem('profileObj') !== undefined ? JSON.parse(localStorage.getItem('profileObj')) : localStorage.clear()
 
-  const generateQuery = (userId) => {
-    const query = `*[_type =='user' && _id == '${userId}']`
-    return query
-  }
+
 
   useEffect(() =>{
-    client.fetch(generateQuery(userInfo?.id))
+    client.fetch(userQuery(userInfo?.id))
     .then((res) => {
         console.log(res[0])
         setUser(res[0])

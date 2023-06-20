@@ -7,7 +7,7 @@ import Spinner from './Spinner'
 
 
 const Feed = () => {
-    const [isLoding, setIsLoding] = useState(true)
+    const [isLoding, setIsLoding] = useState(false)
 
     if(isLoding) return (<Spinner message={`Please wait we are adding new ideas to your field`} />)
     return(

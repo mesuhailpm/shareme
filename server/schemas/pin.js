@@ -5,23 +5,28 @@ export default {
     fields: [
         {
             name: 'title',
-            type:'string',
             title: 'Title',
+            type:'string',
         },
         {
             name:'about',
-            type:'string',
             title: 'About',
+            type:'string',
         },
         {
             name: 'destination',
-            type:'url',
             title: 'Destination',
+            type:'url',
+        },
+        {
+            name:'category',
+            title:'Category',
+            type:'string'
         },
         {
             name: 'image',
-            type: 'image',
             title: 'Image',
+            type: 'image',
             options: {
                 hotspot: true
             },
@@ -29,24 +34,24 @@ export default {
         },
         {
             name:'userId',
-            type: 'string',
             title: 'UserId',
+            type: 'string',
         },
         {
             name:'postedBy',
-            type:'postedBy',
             title: 'PostedBy',
+            type:'postedBy',
         },
         {
             name: 'save',
-            type: 'array',
             title: 'Save',
+            type: 'array',
             of: [{ type: 'save'}]
         },
         {
             name: 'comments',
-            type: 'array',
             title: 'Comments',
+            type: 'array',
             of: [{ type: 'comment' }]
         }
     ]
