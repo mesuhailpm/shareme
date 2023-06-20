@@ -1,12 +1,13 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Navbar, Feed, CreatePin, PinDetail, Search } from '../components'
 import { Routes,Route } from 'react-router-dom'
 
-const Pins = () => {
+const Pins = ({user}) => {
+  const [searchTerm , setSearchTerm] = useState('')
   return (
     <div className='px-2 md:px-5'>
       <div className="bg-gray-50">
-        <Navbar />
+        <Navbar user={user} searchTerm={searchTerm} setSearchTerm={setSearchTerm}/>
       </div>
       <div>
         <Routes>
