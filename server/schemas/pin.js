@@ -1,7 +1,7 @@
 export default {
     name: 'pin',
-    type: 'document',
     title: 'Pin',
+    type: 'document',
     fields: [
         {
             name: 'title',

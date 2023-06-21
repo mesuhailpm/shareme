@@ -8,6 +8,7 @@ import { Link,Route,Routes } from 'react-router-dom'
 import Pins from '../containers/Pins'
 import UserProfile from '../components/UserProfile'
 import {userQuery} from '../utils/generateQuery'
+import fetchUser from '../utils/fetchUser'
 
 const Home = () => {
   const [showSideBar, setShowSideBar] = useState (false)
@@ -15,7 +16,7 @@ const Home = () => {
   const scrollRef = useRef(null);
 
 
-  const userInfo = localStorage.getItem('profileObj') !== undefined ? JSON.parse(localStorage.getItem('profileObj')) : localStorage.clear()
+  const userInfo = fetchUser()
 
 
 
