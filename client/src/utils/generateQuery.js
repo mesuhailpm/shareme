@@ -95,3 +95,8 @@ export const searchQuery = (keyword) => {
         return query
     }
 
+    export const singlePinQuery = (pinId) => {
+        const query = `*[_type =='pin' && _id == '${pinId}']`
+        return query
+    }
+
