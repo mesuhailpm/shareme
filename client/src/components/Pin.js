@@ -70,10 +70,11 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
             <div className='flex gap-2 rounded-full overflow-hidden'>
               <a  href={`${image?.asset?.url}?dl=`}
                   download                 
+                  onClick={(e)=>e.stopPropagation()}
               >
                   <MdDownloadForOffline 
                   className='bg-white  w-9 h-9 flex justify-center items-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none'
-                  onClick={(e) => e.stopPropagation()} />
+                 />
 
               </a>
 
