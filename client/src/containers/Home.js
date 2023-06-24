@@ -21,7 +21,8 @@ const Home = () => {
 
 
   useEffect(() =>{
-    client.fetch(userQuery(userInfo?.id))
+    const query = userQuery(userInfo?.id)
+    client.fetch(query)
     .then((res) => {
         console.log(res[0])
         setUser(res[0])

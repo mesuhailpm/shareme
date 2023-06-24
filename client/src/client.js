@@ -6,7 +6,7 @@ export const client = createClient({
     projectId: process.env.REACT_APP_SANITY_PROJECT_ID ,// add project id form sanity manage using env
     dataset:'production',
     apiVersion:'2021-11-16',
-    useCdn: true,
+    useCdn: false, // made this edit because fetch() was returning old data
     token: process.env.REACT_APP_SANITY_TOKEN //token from sanity using env
 })
 

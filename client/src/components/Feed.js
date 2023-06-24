@@ -13,19 +13,26 @@ const Feed = () => {
     const {categoryId} = useParams()
 
     useEffect(() => {
+        console.log('useEffect ran with categoryId: ' + categoryId)
         if(categoryId) {
             setIsLoading(true)
-            client.fetch(searchQuery(categoryId)) 
+            const query = searchQuery(categoryId)
+            client
+            .fetch(query) 
             .then((data) => setPins(data))
             setIsLoading(false)
 
         }else {
-            setIsLoading(true)
-            client.fetch(feedQuery)
-            .then((data) => setPins(data))
-            setIsLoading(false)
+            setIsLoading(true);
+            console.log('rendering pins');
+            const timestamp = new Date().getTime();
+            client.fetch(`feedQuery${timestamp}`)
+            client.fetch(feedQuery).then((data) => {
+                console.log('rendering pins save[] is ',`${data[0]?.save ? data[0]?.save[0].userId : 'not set'}`)
+                setPins(data);
+                setIsLoading(false);})
         }
-    },[])
+    },[categoryId])
 
     if(isLoading) return (<Spinner message={`Please wait we are adding new ideas to your field`} />)
     return(
