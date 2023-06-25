@@ -96,7 +96,59 @@ export const searchQuery = (keyword) => {
     }
 
     export const singlePinQuery = (pinId) => {
-        const query = `*[_type =='pin' && _id == '${pinId}']`
+        console.log(pinId)
+        const query = `*[_type =='pin' && _id == '${pinId}']{
+            image{
+                asset-> {
+                    url
+                }
+            },
+            _id,
+            title,
+            about,
+            category,
+            destination,
+            postedBy -> {
+                _id,
+                userName,
+                image
+            },
+            save[]{
+                userId,
+                postedBy->{
+                    _id,
+                    userName,
+                    image
+            }
+        }
+    }`
+        return query
+    }
+
+    export const morePinsQuery = (pin) =>{
+        const query = `*[type = "pin" && category == '${pin.category}' && _id != '${pin._id}']{
+            image {
+                asset-> {
+                    url
+                }
+            },
+            _id,
+            destination,
+            postedBy -> {
+                _id,
+                userName,
+                image
+            },
+            save[]{
+                userId,
+                postedBy->{
+                  _id,
+                  userName,
+                  image
+                }
+            }
+        }`
+
         return query
     }
 
