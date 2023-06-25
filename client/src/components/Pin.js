@@ -12,13 +12,13 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
   console.log(pin) //test
   const user = fetchUser()
   const [isHovering, setIsHovering] = useState(false)
-  const [savingPost, setSavingPost] = useState(false) ///tutorial removed this  
+  const [savingPost, setSavingPost] = useState(false) ///tutorial removed this
   const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user.id))?.length
   console.log(alreadySaved,' is value of alreadySaved') //test
   //[2,3,1] -> [3] -> .length -> 1 !1-> 0 !0-> true
   //[2,3,1] -> [] -> .length -> 0  -> true -> false
   const navigate = useNavigate()
-  
+
   const savePin = (id) => {
     console.log(id)
     if(!alreadySaved)
@@ -41,7 +41,7 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
         window.location.reload()
         }).catch(()=>{console.log('Error')})
     }
-  
+
   }
 
   const deletePin = (e) => {
@@ -50,16 +50,16 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
     client.delete(_id).then(()=>
       window.location.reload())
   }
-  
-  
-  
+
+
+
   return (
     <div className='m-2 flex flex-col'>
       <div className='relative cursor-zoom-in w-auto rounded-lg overflow-hidden transition-all duration-500 ease-in-out'
         onMouseEnter={()=>setIsHovering(true)}
         onMouseLeave={()=>setIsHovering(false)}
         onClick={()=>navigate(`/pin-detail/${_id}`)}
-      
+
       >
 
       <img src={urlFor(image).width(250).url()} alt='user-post' className='rounded-lg w-full' />
@@ -69,17 +69,17 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
           <div className='flex justify-between items-center '>
             <div className='flex gap-2 rounded-full overflow-hidden'>
               <a  href={`${image?.asset?.url}?dl=`}
-                  download                 
+                  download
                   onClick={(e)=>e.stopPropagation()}
               >
-                  <MdDownloadForOffline 
+                  <MdDownloadForOffline
                   className='bg-white  w-9 h-9 flex justify-center items-center text-dark text-xl opacity-75 hover:opacity-100 hover:shadow-md outline-none'
                  />
 
               </a>
 
             </div>
-            {alreadySaved ? 
+            {alreadySaved ?
               <button type='button' className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'>
                 {save?.length} Saved
               </button>
@@ -96,24 +96,24 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
           </div>
           <div className="flex justify-between items-center w-full">
             {destination && (
-              <a 
+              <a
                 href={destination}
-                target="_blank" 
+                target="_blank"
                 rel="noreferrer"
-                className ='bg-white rounded-full p-2 opacity-70 hover:opacity-100 flex items-center justify-between gap-2' 
+                className ='bg-white rounded-full p-2 opacity-70 hover:opacity-100 flex items-center justify-between gap-2'
 
 
               >
-                
+
                   <BsFillArrowUpRightCircleFill/>
                  {destination.slice(7)}
               </a>
 
             )}
             <div className="flex">
-              {user.id === postedBy._id && 
-              <button 
-                type='button' 
+              {user.id === postedBy._id &&
+              <button
+                type='button'
                 className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
                 onClick = {deletePin}
 

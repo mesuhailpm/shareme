@@ -42,7 +42,7 @@ export const userQuery = (userId) => {
 //             image
 
 //         }
-        
+
 //     }
 
 // }`
@@ -88,7 +88,7 @@ export const searchQuery = (keyword) => {
         }
         ,
         'save': save[]._userId
-            
+
 
     }
     `
@@ -120,13 +120,22 @@ export const searchQuery = (keyword) => {
                     userName,
                     image
             }
+        },
+        comments[]{
+            comment,
+            _key,
+            postedBy->{
+            _id,
+            userName,
+            image
+            }
         }
     }`
         return query
     }
 
     export const morePinsQuery = (pin) =>{
-        const query = `*[type = "pin" && category == '${pin.category}' && _id != '${pin._id}']{
+        const query = `*[_type == 'pin' && category == '${pin.category}' && _id != '${pin._id}' ]{
             image {
                 asset-> {
                     url
@@ -151,4 +160,3 @@ export const searchQuery = (keyword) => {
 
         return query
     }
-
