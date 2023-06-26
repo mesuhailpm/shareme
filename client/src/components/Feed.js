@@ -18,15 +18,13 @@ const Feed = () => {
             setIsLoading(true)
             const query = searchQuery(categoryId)
             client
-            .fetch(query) 
+            .fetch(query)
             .then((data) => setPins(data))
             setIsLoading(false)
 
         }else {
             setIsLoading(true);
             console.log('rendering pins');
-            const timestamp = new Date().getTime();
-            client.fetch(`feedQuery${timestamp}`)
             client.fetch(feedQuery).then((data) => {
                 console.log('rendering pins save[] is ',`${data[0]?.save ? data[0]?.save[0].userId : 'not set'}`)
                 setPins(data);

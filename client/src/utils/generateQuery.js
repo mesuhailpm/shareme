@@ -73,7 +73,7 @@ export const feedQuery = `*[_type =='pin'] | order(_createdAt desc){
 }`
 
 export const searchQuery = (keyword) => {
-    const query = `*[_type =='pin' &&  title match '${keyword}' && category match '${keyword}' && about match '${keyword}']{
+    const query = `*[_type =='pin' &&  title match '${keyword}' || category match '${keyword}' || about match '${keyword}']{
         image {
             asset-> {
                 url
@@ -92,6 +92,7 @@ export const searchQuery = (keyword) => {
 
     }
     `
+    console.log(query,' is query copy this to test on Sanity')
         return query
     }
 
