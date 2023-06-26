@@ -48,72 +48,89 @@ export const searchQuery = (keyword) => {
 
     }
     `
-    console.log(query,' is query copy this to test on Sanity')
         return query
     }
 
-    export const singlePinQuery = (pinId) => {
-        console.log(pinId)
-        const query = `*[_type =='pin' && _id == '${pinId}']{
-            image{
-                asset-> {
-                    url
-                }
-            },
-            _id,
-            title,
-            about,
-            category,
-            destination,
-            postedBy -> {
-                _id,
-                userName,
-                image
-            },
-            save[]{
-                userId,
-                postedBy->{
-                    _id,
-                    userName,
-                    image
+export const singlePinQuery = (pinId) => {
+    console.log(pinId)
+    const query = `*[_type =='pin' && _id == '${pinId}']{
+        image{
+            asset-> {
+                url
             }
         },
-        comments[]{
-            comment,
-            _key,
-            postedBy->{
+        _id,
+        title,
+        about,
+        category,
+        destination,
+        postedBy -> {
             _id,
             userName,
             image
-            }
-        }
-    }`
-        return query
-    }
-
-    export const morePinsQuery = (pin) =>{
-        const query = `*[_type == 'pin' && category == '${pin.category}' && _id != '${pin._id}' ]{
-            image {
-                asset-> {
-                    url
-                }
-            },
-            _id,
-            destination,
-            postedBy -> {
+        },
+        save[]{
+            userId,
+            postedBy->{
                 _id,
                 userName,
                 image
-            },
-            save[]{
-                userId,
-                postedBy->{
-                  _id,
-                  userName,
-                  image
-                }
-            }
-        }`
-
-        return query
+        }
+    },
+    comments[]{
+        comment,
+        _key,
+        postedBy->{
+        _id,
+        userName,
+        image
+        }
     }
+}`
+    return query
+}
+
+export const morePinsQuery = (pin) =>{
+    const query = `*[_type == 'pin' && category == '${pin.category}' && _id != '${pin._id}' ]{
+        image {
+            asset-> {
+                url
+            }
+        },
+        _id,
+        destination,
+        postedBy -> {
+            _id,
+            userName,
+            image
+        },
+        save[]{
+            userId,
+            postedBy->{
+                _id,
+                userName,
+                image
+            }
+        }
+    }`
+
+    return query
+}
+
+export const userProfileQuery = (userId) => {
+    const query = `*[_type == 'user' && _id == '${userId}']`
+    return query
+}
+export const savedPinsQuery = (userId) => {
+    const query = `*[_type == 'pin' && userId == '${userId}'] | order(_createdAt desc)`
+        console.log(query,' is query copy this to test on Sanity')
+
+    return query
+
+}
+export const createdPinsQuery = (userId) => {
+    const query = `*[_type == 'pin' && userId == '${userId}'] | order(_createdAt desc)`
+        console.log(query,' is query copy this to test on Sanity')
+
+    return query
+}

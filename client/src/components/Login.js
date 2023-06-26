@@ -1,17 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoogleOAuthProvider,GoogleLogin, googleLogout} from '@react-oauth/google'
 import scrollingVideo from '../assests/video.webm'
 import logo from '../assests/logo.png'
 import jwtDecode from 'jwt-decode'
 import { client } from '../client'
 import { useNavigate } from 'react-router-dom'
+import {LineWave} from 'react-loader-spinner'
 
 
 const Login = () => {
   const navigate = useNavigate()
+  const [processingLogin, setProcessingLogin] = useState(false)
 
   const handleSuccess = async (response) => {
     try {
+      setProcessingLogin(true)
       const decodedData = await jwtDecode(response.credential)
       const { name, picture, email, sub } = decodedData
       localStorage.setItem('profileObj', JSON.stringify({name, picture, email, id: sub }))
@@ -25,7 +28,7 @@ const Login = () => {
       }
 
       client.createIfNotExists(doc)
-        .then((res)=>navigate('/'))
+        .then(()=>navigate('/'))
         .catch((e)=>console.log(e))
 
     }
@@ -63,6 +66,12 @@ const Login = () => {
 
           />
         </div>
+        {processingLogin &&
+        <>
+          <LineWave />
+          <h2 className='text-yellow-500 p-2'> Logging you in...</h2>
+        </>
+        }
       </div>
     </div>
   </GoogleOAuthProvider>

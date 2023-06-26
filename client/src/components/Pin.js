@@ -13,7 +13,7 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
   const user = fetchUser()
   const [isHovering, setIsHovering] = useState(false)
   const [savingPost, setSavingPost] = useState(false) ///tutorial removed this
-  const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user.id))?.length
+  const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.id))?.length
   console.log(alreadySaved,' is value of alreadySaved') //test
   //[2,3,1] -> [3] -> .length -> 1 !1-> 0 !0-> true
   //[2,3,1] -> [] -> .length -> 0  -> true -> false
@@ -111,7 +111,7 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
 
             )}
             <div className="flex">
-              {user.id === postedBy._id &&
+              {user?.id === postedBy._id &&
               <button
                 type='button'
                 className='bg-red-500 opacity-70 hover:opacity-100 text-white font-bold px-5 py-1 text-base rounded-3xl hover:shadow-md outline-none'
