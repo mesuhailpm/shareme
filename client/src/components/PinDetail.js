@@ -106,13 +106,14 @@ const PinDetails = ({user}) => {
                             <img src={pin.postedBy?.image} alt="user-profile" className='w-8 h-x rounded-full object-cover' />
                             <p className='font-semibold capitalize'>{pin.postedBy?.userName}</p>
                         </Link>
+                        <p><span>Category: </span>{pin?.category}</p>{/*test*/}
                         <h2 className='mt-5 text-2xl'>Comments</h2>
                         <div className='max-h-370 overflow-y-auto'>
                             {pin?.comments?.map((comment,index)=> (
                                 <div className='flex gap-2 mt-5 items-center bg-white rounded-lg' key={index}>
                                     <img src={comment.postedBy.image}
                                     alt='user-profile'
-                                    className='w-10 h10 rounded-full curor-pointer'
+                                    className='w-10 h10 rounded-full cursor-pointer'
                                     />
                                     <div className='flex flex-col'>
                                         <p className='font-bold'>{comment.postedBy.userName}</p>
