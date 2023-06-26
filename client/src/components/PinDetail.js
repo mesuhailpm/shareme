@@ -4,6 +4,7 @@ import { Link, useParams } from 'react-router-dom'
 import { client,urlFor } from '../client'
 import { MdDownloadForOffline } from 'react-icons/md'
 import Spinner from './Spinner'
+import MasonryLayout from './MasonryLayout'
 import {v4 as uuidv4 } from 'uuid'
 
 const PinDetails = ({user}) => {
@@ -66,6 +67,7 @@ const PinDetails = ({user}) => {
     if(!pin) return <Spinner  message='Please wait until we got ideas... ' />
 
     return(
+    <>
         <div className="flex xl:flex-row flex-col m-auto bg-white" style={{maxWidth: '1500px', borderRadius:'32px'}}>
             <div className="flex justify-center items-center md:items-start flex-initial">
                 <img
@@ -118,7 +120,7 @@ const PinDetails = ({user}) => {
                                     </div>
                                 </div>
                             ))}
-                            <div className='flex flex-srap mt-6 gap-3'>
+                            <div className='flex flex-wrap mt-6 gap-3'>
                                 <Link to={`/user-profile/${pin.postedBy?._id}` }>
                                     <img src={pin.postedBy?.image} alt="user-profile" className='w-10 h-10 rounded-full cursor-pointer' />
                                 </Link>
@@ -142,7 +144,19 @@ const PinDetails = ({user}) => {
 
 
         </div>
+        {pins?.length ? (
+            <h2 className='text-center font-bold text-2x-l mt-8 mb-4'>More pins Like this...</h2>
+        ):(
+            <></>
+        ) }
+        {pins ? (
+                <MasonryLayout pins={pins} />
+            ):(
 
+                <Spinner />
+            )
+            }
+</>
 
     )
 }
