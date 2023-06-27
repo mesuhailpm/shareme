@@ -52,7 +52,7 @@ const CreatePin = ({user}) => {
                     _ref:imageAsset?._id
                 },
             },
-            userId: user.id,            
+            userId: user?._id,            
             postedBy:{
                 _type:'postedBy',
                 _ref:user?._id
