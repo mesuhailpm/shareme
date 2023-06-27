@@ -27,7 +27,7 @@ const Home = () => {
     .then((res) => {
         setUser(res[0])
       })
-  },[userInfo])
+  },[userInfo?.id])
 
   useEffect(() =>{
     scrollRef.current.scrollTo(0,0)
