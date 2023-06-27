@@ -29,7 +29,7 @@ const CreatePin = ({user}) => {
 
             } else {
             setWrongImageType(true)
-            setImageAsset(e.target.files[0])
+            setImageAsset(null)
             }
         
     }
@@ -75,27 +75,59 @@ const CreatePin = ({user}) => {
                     <Spinner />
                 )}
                 {wrongImageType && (<p>It&apos;s wrong file type.</p>)}
-                {!imageAsset ? //changed
-                (<label className='flex flex-col items-center hover:cursor-pointer'>
-                    <p className='font-bold text-2xl'>
-                    <AiOutlineCloudUpload /> 
-                    </p>
-                    <p>Use high quality image less than 20 MB</p>
-                    <input type="file" onChange={handleUploadImage} name='upload-image' className='w-0 h-0' />
+                {!imageAsset ?
+                (<label>
+                    <div className='flex flex-col items-center justify-center h-full'>
+                        <div className="flex flex-col justify-center items-center">
 
+                            <p className='font-bold text-2xl'>
+                            <AiOutlineCloudUpload /> 
+                            </p>
+                            <p className='text-lg'>Click to upload</p>
+
+                        </div>
+                        <p className='mt-32 text-gray-400'>Use high quality image less than 20 MB</p>
+                    </div>
+                    <input type="file" onChange={handleUploadImage} name='upload-image' className='w-0 h-0' />
+                    
                 </label>)
                 :(
-                <div className='flex justify-center items-center'>
-                    <img src={imageAsset.url} className='w-full h-full object-cover' alt='pin-pic' />
+                <div className='relative h-full'>
+                    <img src={imageAsset.url} className='w-full h-full' alt='uploaded-pic' />
+                    <button
+                        type="button"
+                        className="absolute bottom-3 right-3 p-3 rounded-full bg-white text-xl cursor-pointer outline-none hover:shadow-md transition-all duration-500 ease-in-out"
+                        onClick={() => setImageAsset(null)}
+                    >
+                        <MdDelete />
+                    </button>
                 </div>)
                 }
 
             </div>
         </div>
         <div className="flex flex-1 flex-col gap-6 lg:pl-5 mt-5 w-full">
-            <input type="text" placeholder='Enter the title here' onChange={(e)=>setTitle(e.target.value)}/>
-            <input type="text" placeholder="what's your pin about?" onChange={(e)=>setAbout(e.target.value)}/>
-            <input type="text" placeholder="Destination (should be a URL)" onChange={(e)=>setDestination(e.target.value)}/>
+            <input type="text" placeholder='Enter the title here' value={title} onChange={(e)=>setTitle(e.target.value)}
+                className='outline-none text-2xl sm:text-3xl font-bold border-b-2 border-gray-200 p-2'
+            />
+
+        {user && (
+            <div className="flex gap-2 mt-2 mb-2 items-center bg-white rounded-lg ">
+              <img
+                src={user.image}
+                className="w-10 h-10 rounded-full"
+                alt="user-profile"
+              />
+              <p className="font-bold">{user.userName}</p>
+            </div>
+            )}
+
+            <input type="text" placeholder="what's your pin about?" value={about} onChange={(e)=>setAbout(e.target.value)}
+                className='outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2'
+            />
+            <input type="url" placeholder="Destination (should be a URL)" value = {destination} onChange={(e)=>setDestination(e.target.value)}
+                className='outline-none text-base sm:text-lg border-b-2 border-gray-200 p-2'
+                />
             <select onChange={(e)=>setCategory(e.target.value)}>
                 <option value="other"> Select a category</option>
                 {categories.map((category) => (
