@@ -63,7 +63,7 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
       >
 
       <img src={urlFor(image).width(250).url()} alt='user-post' className='rounded-lg w-full' />
-      {isHovering && (
+      {(isHovering && user) && (
         <div className='absolute top-0 flex flex-col justify-between w-full h-full p-1 pt-2 pr-2 pb-2 z-50'
           style={{ height:'100%'}} >
           <div className='flex justify-between items-center '>
