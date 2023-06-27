@@ -5,6 +5,7 @@ import { userProfileQuery, savedPinsQuery, createdPinsQuery } from '../utils/gen
 import { googleLogout } from '@react-oauth/google'
 import {AiOutlineLogout} from 'react-icons/ai'
 import Masonrylayout from './MasonryLayout'
+import Spinner from './Spinner'
 
 
 
@@ -15,8 +16,7 @@ const UserProfile = (props) => {
   const [user,setUser] = useState()
   const [text, setText] = useState('Created')
   const [pins,setPins] = useState([])
-  // console.log(text)
-  // console.log(pins)
+  const [loading, setLoading] = useState(false)
 
   const fethUserProfile = () => {
     const query = userProfileQuery (userId)
@@ -44,7 +44,6 @@ const UserProfile = (props) => {
   useEffect(()=>{
 
     fethUserProfile()
-    console.log(user)
   },[userId])
 
 
@@ -69,7 +68,9 @@ const UserProfile = (props) => {
 
 
   return (
-    <div className="relative pb-2 h-full justify-center items-center">
+    loading ? <Spinner />
+    :
+    (<div className="relative pb-2 h-full justify-center items-center">
 
       <div className='flex flex-col pb-5'>
         <div className='relative w-full flex flex-col justify-center items-center'>
@@ -122,7 +123,7 @@ const UserProfile = (props) => {
         <Masonrylayout pins = {pins}/>
       ):
       <p> No pins found</p>}
-    </div>
+    </div>)
   )
 }
 

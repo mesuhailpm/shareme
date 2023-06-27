@@ -9,18 +9,15 @@ import fetchUser from '../utils/fetchUser'
 
 
 const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
-  console.log(pin) //test
   const user = fetchUser()
   const [isHovering, setIsHovering] = useState(false)
   const [savingPost, setSavingPost] = useState(false) ///tutorial removed this
   const alreadySaved = !!(save?.filter((item) => item?.postedBy?._id === user?.id))?.length
-  // console.log(alreadySaved,' is value of alreadySaved') //test
   //[2,3,1] -> [3] -> .length -> 1 !1-> 0 !0-> true
   //[2,3,1] -> [] -> .length -> 0  -> true -> false
   const navigate = useNavigate()
 
   const savePin = (id) => {
-    console.log(id)
     if(!alreadySaved)
     {setSavingPost(true)
 
@@ -46,7 +43,6 @@ const Pin = ({ pin: {postedBy,destination,image,save,_id},pin } ) => {
 
   const deletePin = (e) => {
     e.stopPropagation()
-    console.log(_id,' will delete')
     client.delete(_id).then(()=>
       window.location.reload())
   }

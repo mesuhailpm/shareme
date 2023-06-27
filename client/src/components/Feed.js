@@ -14,7 +14,6 @@ const Feed = () => {
     const [hasfetchedResult,setHasFetchedResult] = useState(false)
 
     useEffect(() => {
-        console.log('useEffect ran with categoryId: ' + categoryId)
         if(categoryId) {
             setIsLoading(true)
             const query = searchQuery(categoryId)
@@ -26,9 +25,7 @@ const Feed = () => {
 
         }else {
             setIsLoading(true);
-            console.log('rendering pins');
             client.fetch(feedQuery).then((data) => {
-                console.log('rendering pins save[] is ',`${data[0]?.save ? data[0]?.save[0].userId : 'not set'}`)
                 setPins(data);
                 setIsLoading(false);})
         }

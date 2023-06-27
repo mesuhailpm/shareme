@@ -3,7 +3,6 @@ import {useNavigate, Link} from 'react-router-dom'
 import {AiOutlineLogin} from 'react-icons/ai'
 const Navbar = ( { user, searchTerm, setSearchTerm } ) => {
     const navigate = useNavigate();
-    console.log(searchTerm,' is search term')
 
 
     if(!user) return (

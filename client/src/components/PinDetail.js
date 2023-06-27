@@ -12,7 +12,6 @@ const PinDetails = ({user}) => {
     const {pinId}  = useParams()
     const [pin,setPin] = useState() //currentPin
     const [pins, setPins] = useState() //similiar pins
-    console.log(pin,' is pin and ')
     const [isCommenting, setIsCommenting] = useState(false)
     const [comment,setComment] = useState('')
 
@@ -107,7 +106,6 @@ const PinDetails = ({user}) => {
                             <img src={pin.postedBy?.image} alt="user-profile" className='w-8 h-x rounded-full object-cover' />
                             <p className='font-semibold capitalize'>{pin.postedBy?.userName}</p>
                         </Link>
-                        <p><span>Category: </span>{pin?.category}</p>{/*test*/}
                         <h2 className='mt-5 text-2xl'>Comments</h2>
                         <div className='max-h-370 overflow-y-auto'>
                             {pin?.comments?.map((comment,index)=> (

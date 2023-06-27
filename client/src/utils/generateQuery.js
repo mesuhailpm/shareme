@@ -52,7 +52,6 @@ export const searchQuery = (keyword) => {
     }
 
 export const singlePinQuery = (pinId) => {
-    console.log(pinId)
     const query = `*[_type =='pin' && _id == '${pinId}']{
         image{
             asset-> {
@@ -144,14 +143,12 @@ export const savedPinsQuery = (userId) => {
       
         
       }`
-        console.log(query,' is query copy this to test on Sanity')
 
     return query
 
 }
 export const createdPinsQuery = (userId) => {
     const query = `*[_type == 'pin' && userId == '${userId}'] | order(_createdAt desc)`
-        console.log(query,' is query copy this to test on Sanity')
 
     return query
 }
