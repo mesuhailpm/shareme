@@ -9,6 +9,7 @@ import Pins from '../containers/Pins'
 import UserProfile from '../components/UserProfile'
 import {userQuery} from '../utils/generateQuery'
 import fetchUser from '../utils/fetchUser'
+import {AiOutlineLogin} from 'react-icons/ai'
 
 const Home = () => {
   const [showSideBar, setShowSideBar] = useState (false)
@@ -44,9 +45,16 @@ const Home = () => {
           <Link to="/">
             <img src={logo} alt="logo" className="w-28" />
           </Link>
-          <Link to={`user-profile/${user?._id}`}>
+          {user?._id ? <Link to={`user-profile/${user?._id}`}>
             <img src={user?.image} alt="user-pic" className="w-9 h-9 rounded-full " />
           </Link>
+          :
+          <Link to="login" className='flex justify-center items-center gap-2 bg-green-500 p-3 rounded-md'>
+            <AiOutlineLogin />
+            <p>Login</p>
+          </Link>
+            }
+            
         </div>
         {showSideBar && (
         <div className="fixed w-4/5 bg-white h-screen overflow-y-auto shadow-md z-10 animate-slide-in">
