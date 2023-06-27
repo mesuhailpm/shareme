@@ -59,6 +59,7 @@ const PinDetails = ({user}) => {
         .then(()=> {
             fetchPinDetails()
             setIsCommenting(false)
+            setComment('')
         })
         .catch((err)=>console.log(err))
 
