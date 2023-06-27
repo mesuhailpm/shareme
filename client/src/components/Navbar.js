@@ -7,7 +7,9 @@ const Navbar = ( { user, searchTerm, setSearchTerm } ) => {
 
     if(!user) return (
         <Link to="login" className='hidden md:flex w-20 justify-center items-center gap-2 bg-green-500 p-3 rounded-md'>
-            <AiOutlineLogin />
+            <p className='text-xl'>
+                <AiOutlineLogin />
+            </p>
             <p>Login</p>
         </Link>)
 
@@ -15,9 +17,9 @@ const Navbar = ( { user, searchTerm, setSearchTerm } ) => {
         <div className='flex gap-2 md:gap-5 w-full mt-5 pb-7'>
             <div className='flex justify-start items-center w-full px-2 rounded-md bg-white border-none outline-none focus-within:shadow-sm'>
                 <IoMdSearch fontSize={21} className='ml-1' />
-                <input 
+                <input
                 type='text'
-                onChange={(e)=>setSearchTerm(e.target.value)} 
+                onChange={(e)=>setSearchTerm(e.target.value)}
                 placeholder='Search...'
                 value={searchTerm}
                 onFocus={()=>navigate('/search')}
