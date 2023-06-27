@@ -3,6 +3,7 @@ import logo from '../assests/logo.png'
 import { NavLink,Link } from 'react-router-dom'
 import { RiHomeFill } from 'react-icons/ri'
 import {IoIosArrowForward} from 'react-icons/io'
+import categories from '../utils/categories'
 
 const Sidebar = ({user, setShowSideBar }) => {
   const isActiveStyle = 'flex items-center tex-gray-500 gap-5'
@@ -12,14 +13,6 @@ const Sidebar = ({user, setShowSideBar }) => {
       setShowSideBar(false)
     }
     }
-  const categories = [
-    {name: 'sports'},
-    {name: 'entertainment'},
-    {name: 'health'},
-    {name: 'fashion'},
-    {name: 'travel'},
-    {name: 'other'},
-  ]
   return (
     <div className="flex flex-col justify-between bg-white h-full overflow-y-scroll min-w-210 hide-scrollbar p-5">{/* added extra padding */}
       <div className="flex flex-col">
@@ -41,12 +34,12 @@ const Sidebar = ({user, setShowSideBar }) => {
             Home
           </NavLink>
           <h3 className="mt-2 px-5 text-base 2xl:text-xl">Discover cateogries</h3>
-          {categories.slice(0, categories.length-1).map((category) => (
+          {categories.slice(0, categories.length-1).map((category,index) => (
             <NavLink
               to={`/category/${category.name}`}
               className={({ isActive }) => (isActive ? isActiveStyle : isNotActiveStyle)}
               onClick={handleToggleSidebar}
-              key={category.name}
+              key={index}
             >
               {/* <img src={category.image} className="w-8 h-8 rounded-full shadow-sm" /> */}
               {category.name}
