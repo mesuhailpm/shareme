@@ -4,6 +4,7 @@ import { client } from '../client'
 import { userProfileQuery, savedPinsQuery, createdPinsQuery } from '../utils/generateQuery'
 import { googleLogout } from '@react-oauth/google'
 import {AiOutlineLogout} from 'react-icons/ai'
+import Masonrylayout from './MasonryLayout'
 
 
 
@@ -13,8 +14,8 @@ const UserProfile = () => {
   const [user,setUser] = useState()
   const [text, setText] = useState('Created')
   const [pins,setPins] = useState([])
-  console.log(text)
-  console.log(pins)
+  // console.log(text)
+  // console.log(pins)
 
   const fethUserProfile = () => {
     const query = userProfileQuery (userId)
@@ -27,14 +28,14 @@ const UserProfile = () => {
 
   const fetchSavedPins = () => {
     const query = savedPinsQuery(userId)
-    client.fetch().then((res)=> setPins(res))
+    client.fetch(query).then((res)=> setPins(res))
       .catch((err)=>console.log(err))
 
   }
 
   const fetchCreatedPins = () => {
     const query = createdPinsQuery(userId)
-    client.fetch().then((res)=> setPins(res))
+    client.fetch(query).then((res)=> setPins(res))
       .catch((err)=>console.log(err))
   }
 
@@ -53,7 +54,7 @@ const UserProfile = () => {
     }else{
       fetchSavedPins()
     }
-  })
+  },[userId,text])
 
 
   const handleLogout = () =>{
@@ -114,6 +115,9 @@ const UserProfile = () => {
         </button>
 
       </div>
+      {pins?.length && (
+        <Masonrylayout pins = {pins}/>
+      )}
     </div>
   )
 }

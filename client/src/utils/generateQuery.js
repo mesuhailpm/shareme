@@ -122,7 +122,28 @@ export const userProfileQuery = (userId) => {
     return query
 }
 export const savedPinsQuery = (userId) => {
-    const query = `*[_type == 'pin' && userId == '${userId}'] | order(_createdAt desc)`
+    const query = `*[_type == 'pin' && '${userId}' in save[].userId] | order(_createdAt desc){
+        _id,
+          
+        image {
+          asset->
+            {url} 
+        },
+        userId,
+        save[]{
+            userId,
+            postedBy->{
+              _id,
+              userName,
+              image
+            }
+        },
+        category,
+        title
+        
+      
+        
+      }`
         console.log(query,' is query copy this to test on Sanity')
 
     return query
