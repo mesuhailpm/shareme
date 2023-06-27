@@ -1,10 +1,16 @@
 import {IoMdAdd,IoMdSearch} from 'react-icons/io'
 import {useNavigate, Link} from 'react-router-dom'
+import {AiOutlineLogin} from 'react-icons/ai'
 const Navbar = ( { user, searchTerm, setSearchTerm } ) => {
     const navigate = useNavigate();
+    console.log(searchTerm,' is search term')
 
 
-    if(!user) return null;
+    if(!user) return (
+        <Link to="login" className='hidden md:flex w-20 justify-center items-center gap-2 bg-green-500 p-3 rounded-md'>
+            <AiOutlineLogin />
+            <p>Login</p>
+        </Link>)
 
     return(
         <div className='flex gap-2 md:gap-5 w-full mt-5 pb-7'>

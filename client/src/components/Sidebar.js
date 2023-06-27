@@ -18,7 +18,7 @@ const Sidebar = ({user, setShowSideBar }) => {
       <div className="flex flex-col">
         <Link
           to="/"
-          className="flex px-5 gap-2 my-6 pt-1 w-190 items-center"
+          className="flex px-5 gap-2 my-6 py-1 w-190 items-center border-2 border-solid rounded-md"
           onClick={handleToggleSidebar}
         >
           <img src={logo} alt="logo" className="w-full" />

@@ -25,10 +25,9 @@ const Home = () => {
     const query = userQuery(userInfo?.id)
     client.fetch(query)
     .then((res) => {
-        console.log(res[0])
         setUser(res[0])
       })
-  },[])
+  },[userInfo])
 
   useEffect(() =>{
     scrollRef.current.scrollTo(0,0)
@@ -37,12 +36,13 @@ const Home = () => {
   return (
     <div className="flex bg-gray-50 md:flex-row flex-col h-screen transition-height duration-75 ease-out">
       <div className="hidden md:flex h-screen flex-initial">
+        first sidebar
         <Sidebar user = {user && user} />
       </div>
       <div className="flex md:hidden flex-row">
         <div className="p-2 w-full flex flex-row justify-between items-center shadow-md">
           <HiMenu fontSize={40} className="cursor-pointer" onClick={() => setShowSideBar(true)} />
-          <Link to="/">
+          <Link to="/" className='border-2 border-solid rounded-lg p-2'>
             <img src={logo} alt="logo" className="w-28" />
           </Link>
           {user? <Link to={`user-profile/${user?._id}`}>
@@ -67,7 +67,7 @@ const Home = () => {
       </div>
       <div className="pb-2 flex-1 h-screen overflow-y-scroll" ref={scrollRef}>
         <Routes>
-          <Route path="/user-profile/:userId" element={<UserProfile />} />
+          <Route path="/user-profile/:userId" element={<UserProfile user={user && user} />} />
           <Route path="/*" element={<Pins user={user && user} />} />
         </Routes>
       </div>

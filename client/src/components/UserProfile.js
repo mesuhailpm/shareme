@@ -8,9 +8,10 @@ import Masonrylayout from './MasonryLayout'
 
 
 
-const UserProfile = () => {
+const UserProfile = (props) => {
   const navigate = useNavigate()
   const {userId} = useParams()
+  const currentUser = props.user;
   const [user,setUser] = useState()
   const [text, setText] = useState('Created')
   const [pins,setPins] = useState([])
@@ -86,7 +87,7 @@ const UserProfile = () => {
         <h1 className="font-bold text-3xl text-center mt-3">
               {user?.userName}
         </h1>
-        <div className="absolute top-1 z-1 right-1">
+        {currentUser ? <div className="absolute top-1 z-1 right-1">
           <button onClick={handleLogout}>
             <div className='flex justify-center gap-1 items-center rounded-lg bg-red-500 p-3'>
               <p className='md:text-4xl'>
@@ -97,6 +98,7 @@ const UserProfile = () => {
           </button>
 
         </div>
+        : <></>}
 
       </div>
       <div className='text-center mb-7'>
