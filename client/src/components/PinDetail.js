@@ -132,7 +132,7 @@ const PinDetails = ({user}) => {
                                     placeholder='Type a comment '
                                     onChange={(e)=> setComment(e.target.value)}
                                 />
-                                <button className='bg-red-500 text-base text-white px-6 py-2 rounded-full outline-none shadow opacity-100 hover:' onClick={saveComment} disabled={!user}>
+                                <button className='bg-blue-500 text-base text-white px-6 py-2 rounded-full outline-none shadow opacity-100 hover:' onClick={saveComment} disabled={!user || !comment}>
 
                                     {isCommenting ? 'Posting...' : 'Post'}
 

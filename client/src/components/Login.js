@@ -4,7 +4,7 @@ import scrollingVideo from '../assests/video.webm'
 import logo from '../assests/logo.png'
 import jwtDecode from 'jwt-decode'
 import { client } from '../client'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import {LineWave} from 'react-loader-spinner'
 
 
@@ -55,9 +55,9 @@ const Login = () => {
 
       </div>
       <div className='absolute flex flex-col justify-center items-center top-0 left-0 right-0 bottom-0 bg-blackOverlay'>
-        <div className='m-2 border-2 border-white border-solid rounded-lg overflow-hidden'>
+        <Link to='/' className='m-2 border-2 border-white border-solid rounded-sm overflow-hidden'>
           <img src = {logo} alt = "logo" width = '230px' className = 'rounded-sm' />
-        </div>
+        </Link>
         <div className="sadow-2x1">
           <GoogleLogin
           onSuccess={handleSuccess}
