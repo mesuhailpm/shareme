@@ -55,7 +55,7 @@ const Login = () => {
 
       </div>
       <div className='absolute flex flex-col justify-center items-center top-0 left-0 right-0 bottom-0 bg-blackOverlay'>
-        <div className='p-5'>
+        <div className='m-2 border-2 border-white border-solid rounded-lg overflow-hidden'>
           <img src = {logo} alt = "logo" width = '230px' className = 'rounded-sm' />
         </div>
         <div className="sadow-2x1">
