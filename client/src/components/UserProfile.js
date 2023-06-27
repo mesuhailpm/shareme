@@ -88,10 +88,11 @@ const UserProfile = () => {
         </h1>
         <div className="absolute top-1 z-1 right-1">
           <button onClick={handleLogout}>
-            <div className='flex justify-center align-center bg-red-500 p-3'>
+            <div className='flex justify-center gap-1 items-center rounded-lg bg-red-500 p-3'>
               <p className='md:text-4xl'>
                 <AiOutlineLogout />
               </p>
+                Log out
             </div>
           </button>
 
@@ -115,9 +116,10 @@ const UserProfile = () => {
         </button>
 
       </div>
-      {pins?.length && (
+      {pins?.length?  (
         <Masonrylayout pins = {pins}/>
-      )}
+      ):
+      <p> No pins found</p>}
     </div>
   )
 }
