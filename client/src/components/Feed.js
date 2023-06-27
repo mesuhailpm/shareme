@@ -11,6 +11,7 @@ const Feed = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [pins,setPins] = useState(null)
     const {categoryId} = useParams()
+    const [hasfetchedResult,setHasFetchedResult] = useState(false)
 
     useEffect(() => {
         console.log('useEffect ran with categoryId: ' + categoryId)
@@ -20,6 +21,7 @@ const Feed = () => {
             client
             .fetch(query)
             .then((data) => setPins(data))
+            setHasFetchedResult(true)
             setIsLoading(false)
 
         }else {
@@ -36,6 +38,7 @@ const Feed = () => {
     return(
         <div>
          {pins && <MasonryLayout pins={pins} />}
+         {(hasfetchedResult && !pins?.length) && <p> No pins found for the criteria </p>}
         </div>
     )
 }
