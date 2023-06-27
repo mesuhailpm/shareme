@@ -15,13 +15,16 @@ const Feed = () => {
 
     useEffect(() => {
         if(categoryId) {
-            setIsLoading(true)
+            setIsLoading(true);
             const query = searchQuery(categoryId)
             client
             .fetch(query)
-            .then((data) => setPins(data))
-            setHasFetchedResult(true)
-            setIsLoading(false)
+            .then((data) => {
+                setPins(data)
+                setHasFetchedResult(true)
+                setIsLoading(false)}
+            )
+
 
         }else {
             setIsLoading(true);

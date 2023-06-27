@@ -6,8 +6,8 @@ import {IoIosArrowForward} from 'react-icons/io'
 import categories from '../utils/categories'
 
 const Sidebar = ({user, setShowSideBar }) => {
-  const isActiveStyle = 'flex items-center tex-gray-500 gap-5'
-  const isNotActiveStyle = 'flex items-center'
+  const isActiveStyle = 'flex items-center px-5 gap-3 font-extrabold border-r-2 border-black  transition-all duration-200 ease-in-out capitalize'
+  const isNotActiveStyle = 'flex items-center px-5 gap-3 text-gray-500 hover:text-black transition-all duration-200 ease-in-out capitalize'
   const handleToggleSidebar = () => {
     if (setShowSideBar) {
       setShowSideBar(false)
@@ -41,7 +41,7 @@ const Sidebar = ({user, setShowSideBar }) => {
               onClick={handleToggleSidebar}
               key={index}
             >
-              {/* <img src={category.image} className="w-8 h-8 rounded-full shadow-sm" /> */}
+              <img src={category.image} className="w-8 h-8 rounded-full shadow-sm" />
               {category.name}
             </NavLink>
           ))}
